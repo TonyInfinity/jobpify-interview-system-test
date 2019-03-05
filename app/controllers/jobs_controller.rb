@@ -16,6 +16,7 @@ class JobsController < ApplicationController
 
   def show
     @jobs = Job.all.order("created_at desc")
+    @users = User.all
     @jobs_by_same_author = Job.where('job_author = ?', @job.job_author).order("created_at desc")
   end
 

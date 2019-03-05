@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190302121340) do
+ActiveRecord::Schema.define(version: 20190305130544) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "sender_id"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20190302121340) do
     t.integer  "user_id"
     t.datetime "job_deadline"
   end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "job_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["job_id"], name: "index_likes_on_job_id"
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id"
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"

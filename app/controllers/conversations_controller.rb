@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
     def index
         @users = User.all
         @conversations = Conversation.all
-        redirect_to root_path, alert: "You are not authorized" unless current_user.employer?
+        #redirect_to root_path, alert: "You are not authorized" unless current_user.employer?
     end
     
     def create

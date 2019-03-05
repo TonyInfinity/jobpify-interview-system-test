@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     def index
         @messages = @conversation.messages
         @message = @conversation.messages.new
-        redirect_to root_path, alert: "You are not authorized" unless current_user.employer?
+       #redirect_to root_path, alert: "You are not authorized" unless current_user.employer?
     end
     
     def new

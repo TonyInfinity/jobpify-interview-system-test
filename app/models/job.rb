@@ -1,5 +1,6 @@
 class Job < ActiveRecord::Base
     mount_uploader :avatar, AvatarUploader
+    has_many :likes, dependent: :destroy
     
     def self.search(search)
         if search

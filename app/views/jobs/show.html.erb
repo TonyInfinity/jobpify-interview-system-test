@@ -32,6 +32,15 @@
     </span>
     <span>Chia sẻ công việc này trên Facebook</span>
   </a>
+  
+ <% pre_like = @job.likes.find { |like| like.user_id == current_user.id } %>
+<% if pre_like %>
+  <%= button_to 'Unlike', job_like_path(@job, pre_like), method: :delete %>
+<% else %>
+  <%= button_to 'Like', job_likes_path(@job), method: :post %>
+<% end %>
+  <p><%= @job.likes.count %> <%= (@job.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+  
   <hr />
   <div class="box">
     <p class="subtitle is-5 has-text-grey">Cùng nhà tuyển dụng:</p>
@@ -65,8 +74,18 @@
     </a>
     </div>
     <hr />
-    <%= link_to 'Gửi CV', @job.url, class: "button is-rounded is-fullwidth" %>
 
+<% @users.each do |user| %>
+        <% if user.id != current_user.id %>
+        <% if user.id == @job.user_id %>
+         <div class="item"><h3>
+      <%= link_to user.name, conversations_path(sender_id: current_user.id, recipient_id: @job.user_id), method: "post"%>
+     </h3></div>
+     <% end %>
+      <% end %>
+<% end %>
+    
+   <!--<%= link_to 'Gửi CV', @job.url, class: "button is-rounded is-fullwidth" %>-->
     <!--<a class="button is-rounded is-fullwidth" href="">Gửi CV</a>-->
 
     <hr />

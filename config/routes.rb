@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resources :messages
   end
   
+  resources :jobs do
+    resources :likes
+  end
+  
   root to: 'home#index'
   
   get '/forum' => 'pages#forum'
